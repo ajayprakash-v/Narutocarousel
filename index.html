@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>naruto</title>
+</head>
+<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	@font-face{
+		src: url('njnaruto.ttf');
+		font-family: f1;
+	}
+	main{
+		width: 100%;
+		height: 100vh;
+		background-color: black;
+		position: relative;
+		overflow:hidden ;
+		transform-style: preserve-3d;
+		perspective: 1000;
+	}
+	#background img{
+		width: 100%;
+		height: 100vh;
+		position: absolute;
+		display: none;
+		scale: .8;
+		transform:translateZ(-1000px);
+		cursor: pointer;
+		transition: .5s;
+	}
+	#charecters img{
+		position: absolute;
+		display: none;
+		left: 20%;
+		scale: .7;
+		top: 5vw;
+		transition: .5s;
+		z-index: 7;
+	}
+	#charecters img:nth-child(3){
+		top: -5vw;
+		left: 20%;
+	}
+	#charecters img:nth-child(4){
+		left: -30%;
+		scale: .4;
+		top: -25vw;
+	}
+	#charecters img:nth-child(6){
+		top: 10vw;
+	}
+	.showbackground{
+		display: block !important;
+		animation: showb 1s;
+	}
+	.showcharecters{
+		display: block !important;
+		animation: showc 1s;
+	}
+	@keyframes showb{
+		from{
+			opacity: 0;
+		}
+		to{
+			opacity: 1;
+		}
+	}
+	@keyframes showc{
+		from{
+			transform: translateX(-100%);
+		}
+		to{
+			transform: translateX(0px);
+		}
+	}
+	@keyframes showt{
+		from{
+			opacity: 0;
+		}
+		to{
+			opacity: 1;
+		}
+	}
+	#text{
+		position: absolute;
+		z-index: 7;
+		top: 50%;
+		left: 5%;
+		opacity: 1;
+	}
+	#subname{
+		position: absolute;
+		z-index: 7;
+		top: 70%;
+		left: 5%;
+		opacity: .3;
+	}
+	#subname h1{
+		font-size: 7vw!important;
+		animation: subname .5s;
+	}
+	h1{
+		font-size: 5vw;
+		color: white;
+		font-family: f1;
+		letter-spacing: 3px;
+		display: none;
+		animation: showt 2s;
+	}
+	.showtext{
+		display: block !important;	
+	}
+	.fullscreenback{
+		scale: 1.2 !important;
+		filter: blur(10px);
+		transition: 1s!important;
+	}
+	.fullscreencharecter{
+		scale: 1 !important;
+		left: 20% !important;
+		transition: 1.2s !important;
+	}
+	.showsubname{
+		display: block;
+	}
+	@keyframes subname{
+		from{
+			letter-spacing: -100px;
+		}
+		to{
+			letter-spacing: 3px;
+		}
+	}
+</style>
+<body>
+<main>
+
+	<div style="display: flex; justify-content: space-around;width: 100%;position: absolute;bottom: 0;z-index: 100;">
+		<img src="images/l.png" style="width:5vw;cursor: pointer;" onclick="pre()">
+		<img src="images/r.png" style="width:5vw;cursor: pointer;" onclick="next()">
+	</div>
+	<div id="text">
+		<h1>Naruto</h1>
+		<h1>Sasuke</h1>
+		<h1>Kakashi</h1>
+		<h1>Madara</h1>
+		<h1>Itachi</h1>
+		<h1>Hinata</h1>
+	</div>
+	<div id="subname">
+		<h1>Uzumaki</h1>
+		<h1>Uchiha</h1>
+		<h1>Hatake</h1>
+		<h1>Uchiha</h1>
+		<h1>Uchiha</h1>
+		<h1>Hyuga</h1>
+	</div>
+	<div id="background">
+		<img src="images/b0.jpg" style="z-index: 6;" onclick="fullscreen(this)">
+		<img src="images/b1.jpeg" style="z-index: 5;" onclick="fullscreen(this)">
+		<img src="images/b2.jpg" style="z-index: 4;" onclick="fullscreen(this)">
+		<img src="images/b3.jpeg" style="z-index: 3;" onclick="fullscreen(this)">
+		<img src="images/b4.jpg" style="z-index: 2;" onclick="fullscreen(this)">
+		<img src="images/b5.jpeg" style="z-index: 1;" onclick="fullscreen(this)">
+	</div>
+	<div id="charecters">
+		<img src="images/0.png">
+		<img src="images/1.png">
+		<img src="images/2.png">
+		<img src="images/3.png">
+		<img src="images/4.png">
+		<img src="images/5.png">
+	</div>
+</main>
+<script>
+	const background = document.getElementById('background')
+	const charecters = document.getElementById('charecters')
+	const text = document.getElementById('text')
+	const subname = document.getElementById('subname')
+	background.children[0].classList.add('showbackground')
+	charecters.children[0].classList.add('showcharecters')
+	text.children[0].classList.add('showtext')
+	var count = 0
+	function pre(){
+		background.children[count].classList.remove('showbackground')
+		charecters.children[count].classList.remove('showcharecters')
+		text.children[count].classList.remove('showtext')
+		subname.children[count].classList.remove('showsubname')
+		if (count == 0) {
+			count = 5
+			background.children[count].classList.add('showbackground')
+			charecters.children[count].classList.add('showcharecters')
+			text.children[count].classList.add('showtext')
+		}
+		else{
+			count = count - 1
+			background.children[count].classList.add('showbackground')
+			charecters.children[count].classList.add('showcharecters')
+			text.children[count].classList.add('showtext') 	
+		}
+		console.log(count)
+	}
+	function next(){
+		background.children[count].classList.remove('showbackground')
+		charecters.children[count].classList.remove('showcharecters')
+		text.children[count].classList.remove('showtext')
+		subname.children[count].classList.remove('showsubname')
+		if (count == 5) {
+			count = 0
+			background.children[count].classList.add('showbackground')
+			charecters.children[count].classList.add('showcharecters')
+			text.children[count].classList.add('showtext')
+		}
+		else{
+			count = count + 1
+			background.children[count].classList.add('showbackground')
+			charecters.children[count].classList.add('showcharecters')
+			text.children[count].classList.add('showtext') 	
+		}
+		console.log(count)
+	}
+	var fscreen = false
+	function fullscreen(e){
+		if (!fscreen) {
+			e.classList.add('fullscreenback')
+			fscreen = true
+			charecters.children[count].classList.add('fullscreencharecter')
+			setTimeout(()=>{
+				subname.children[count].classList.add('showsubname')
+			},1000)
+		}
+		else{
+			e.classList.remove('fullscreenback')
+			charecters.children[count].classList.remove('fullscreencharecter')
+			subname.children[count].classList.remove('showsubname')
+			fscreen = false	
+		}
+	}
+</script>
+</body>
+</html>
